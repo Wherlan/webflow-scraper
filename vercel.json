@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/crawl", "destination": "/api/crawl" }
+  ]
+}

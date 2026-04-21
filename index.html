@@ -218,8 +218,8 @@
           <div class="field">
             <label>Mode</label>
             <select id="mode">
-              <option selected>AI analysis (no server needed)</option>
-              <option>Live crawl (requires server)</option>
+              <option>AI analysis only</option>
+              <option selected>Live crawl + AI analysis</option>
             </select>
           </div>
         </div>
@@ -417,10 +417,10 @@ async function runScrape() {
   let htmlContent = '';
 
   // Try live crawl via local server
-  if (mode.includes('Live')) {
+  if (mode.includes('Live crawl')) {
     try {
       statusTxt.textContent = 'Crawling live site...';
-      const r = await fetch(`http://localhost:3000/crawl?url=${encodeURIComponent(url)}`);
+      const r = await fetch(`/crawl?url=${encodeURIComponent(url)}`);
       const j = await r.json();
       htmlContent = j.html || '';
       statusTxt.textContent = 'Live HTML fetched. Running AI analysis...';
